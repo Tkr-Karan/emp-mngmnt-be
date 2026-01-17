@@ -106,14 +106,15 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",  # Local development
+CORS_ALLOW_ALL_ORIGINS = True   # DEV + TESTING ke liye best
+CORS_ALLOW_CREDENTIALS = False
+
+CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "https://your-frontend-domain.com",  # Production frontend domain
+    "http://localhost:8080",
+    "https://your-frontend-domain.com",
     "https://emp-mngmnt-be-production.up.railway.app",
 ]
-
-CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -129,7 +130,6 @@ CORS_ALLOW_HEADERS = [
     "accept-encoding",
     "authorization",
     "content-type",
-    "dnt",
     "origin",
     "user-agent",
     "x-csrftoken",
