@@ -46,28 +46,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 3: Start MongoDB
 
-Make sure MongoDB is running on your system:
-
-```bash
-# Start MongoDB service
-# On Linux:
-sudo systemctl start mongodb
-
-# On macOS:
-brew services start mongodb-community
-
-# On Windows:
-# MongoDB should start automatically as a service
-```
-
-Verify MongoDB is running:
-```bash
-mongosh  # or mongo (older versions)
-```
-
-### Step 4: Configure MongoDB Connection
+### Step 3: Configure MongoDB Connection
 
 Edit `employee_management/settings.py` if your MongoDB requires authentication:
 
@@ -349,13 +329,10 @@ curl -X DELETE http://localhost:8000/api/attendance/507f1f77bcf86cd799439011/
     "message": "Employee created successfully",
     "data": {
         "id": "507f1f77bcf86cd799439011",
-        "first_name": "John",
-        "last_name": "Doe",
+        "full_name": "John Doe",
         "email": "john.doe@example.com",
-        "phone": "+1234567890",
+        "employeeId": "EMP001",
         "department": "Engineering",
-        "position": "Software Developer",
-        "salary": 75000,
         "created_at": "2024-01-15T10:30:00",
         "updated_at": "2024-01-15T10:30:00"
     }
@@ -418,18 +395,6 @@ You can test the API using:
 import requests
 
 BASE_URL = "http://localhost:8000/api"
-
-# Create employee
-response = requests.post(f"{BASE_URL}/employees/", json={
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john.doe@example.com",
-    "phone": "+1234567890",
-    "department": "Engineering",
-    "position": "Developer",
-    "salary": 75000
-})
-print(response.json())
 
 # Get all employees
 response = requests.get(f"{BASE_URL}/employees/")
